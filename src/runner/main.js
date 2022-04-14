@@ -66,7 +66,7 @@ async function loop(){
     await syncContainers(results)
 }
 
-const CONTAINER_NAME_PREFIX = 'yadlb_proxy_'
+const CONTAINER_NAME_PREFIX = 'yadlb_runner_proxy-'
 
 async function syncContainers(hosts){
     let containers = await docker.container.list()

@@ -1,10 +1,18 @@
 version:  '3'
 services:
+  frontend:
+    build: './src/frontend'
+    restart: always
+
   backend:
     build: './src/backend'
     restart: always
+
+  yadlb-proxy:
+    build: './src/yadlb-proxy'
+    restart: always
     ports:
-      - "8080:80"
+      - "9090:80"
 
   runner:
     build: './src/runner'
