@@ -1,0 +1,20 @@
+version:  '3'
+services:
+  backend:
+    build: './src/backend'
+    restart: always
+    ports:
+      - "8080:80"
+
+  runner:
+    build: './src/runner'
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  infinitedb:
+    image: 'lucaspape/infinitedb:1.0.27'
+    restart: always
+    volumes:
+      - ./infinitedb_config:/etc/infinitedb
+      - ./infinitedb_data:/var/lib/infinitedb
