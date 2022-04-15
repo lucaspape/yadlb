@@ -1,17 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+import App from './app';
+import Hosts from './pages/hosts/hosts'
+import Login from './pages/login/login'
+
+ReactDOM.render(
+    <>
+        <BrowserRouter>
+            <ToastContainer
+                theme={'dark'}
+                position='top-right'
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+
+            <Routes>
+                <Route path="/" element={<App />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/hosts" element={<Hosts />} />
+                <Route path={'/error'} element={<App />} />
+                <Route
+                    path={'*'}
+                    element={<Navigate to={'/error'} replace />}
+                />
+            </Routes>
+        </BrowserRouter>
+    </>, document.getElementById('root'))
