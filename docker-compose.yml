@@ -1,15 +1,15 @@
 version:  '3'
 services:
-  frontend:
-    build: './src/frontend'
+  management-frontend:
+    build: './src/management/frontend'
     restart: always
 
-  backend:
-    build: './src/backend'
+  management-backend:
+    build: './src/management/backend'
     restart: always
 
-  yadlb-proxy:
-    build: './src/yadlb-proxy'
+  management-proxy:
+    build: './src/management/proxy'
     restart: always
     ports:
       - "9090:80"
