@@ -1,5 +1,6 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
+
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
@@ -9,7 +10,10 @@ import App from './app';
 import Hosts from './pages/hosts/hosts'
 import Login from './pages/login/login'
 
-ReactDOM.render(
+const container = document.getElementById('root')
+const root = createRoot(container)
+
+root.render(
     <>
         <BrowserRouter>
             <ToastContainer
@@ -36,4 +40,4 @@ ReactDOM.render(
                 />
             </Routes>
         </BrowserRouter>
-    </>, document.getElementById('root'))
+    </>)

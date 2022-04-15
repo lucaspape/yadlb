@@ -74,6 +74,38 @@ module.exports = class HttpApi {
             }
         })
 
+        this.app.delete(API_PREFIX + '/host', async (req, res) => {
+            const sessionId = req.cookies.session
+
+            let session
+
+            try{
+                session = await this.api.checkSession(sessionId)
+            }catch (e) {
+                console.log(e)
+                res.status(500).send('Internal Server Error')
+                return
+            }
+
+            if(session){
+                let port = Number(req.query.port)
+
+                if(!port){
+                    res.status(400).send('Missing query parameter port')
+                }else{
+                    try {
+                        await this.api.deleteHost(port)
+                        res.send('Deleted host')
+                    }catch (e) {
+                        console.log(e)
+                        res.status(500).send('Internal server error')
+                    }
+                }
+            }else{
+                res.status(401).send('Unauthorized')
+            }
+        })
+
         this.app.post(API_PREFIX + '/login', async (req, res) => {
             let username = req.body.username
             let password = req.body.password

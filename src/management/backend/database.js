@@ -139,6 +139,16 @@ module.exports = class Database {
         await this.database.insert(HOSTS_TABLE_NAME, {port: port, protocol: protocol, destination: destination, dport: dport})
     }
 
+    async deleteHost(port){
+        let where = {
+            field: 'port',
+            operator: '=',
+            value: port
+        }
+
+        await this.database.remove(HOSTS_TABLE_NAME, {where: where})
+    }
+
     async getHosts(){
         return (await this.database.get(HOSTS_TABLE_NAME, {}))
     }

@@ -1,8 +1,12 @@
+import {useEffect} from "react"
 import { useNavigate } from 'react-router-dom'
 
 function App() {
-  let navigate = useNavigate()
-  navigate('/hosts')
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    navigate('/hosts')
+  })
 
   return (
     <div className="App">

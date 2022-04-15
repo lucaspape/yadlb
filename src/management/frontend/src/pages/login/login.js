@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import axios from 'axios'
-import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
-import './login.scss'
+import {toast} from 'react-toastify'
+import {useNavigate} from 'react-router-dom'
 
 const Login = () => {
     const [username, setUsername] = useState('')
@@ -36,7 +35,7 @@ const Login = () => {
                 console.log(error.response.data.message)
 
                 toast.error('Login failed! Wrong password / username', {
-                    position: 'top-right',
+                    position: toast.POSITION.TOP_RIGHT,
                     autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -47,45 +46,42 @@ const Login = () => {
             })
     }
 
-    return(
+    return (
         <>
             <main>
                 <form id='register' onSubmit={handleSubmit}>
                     <h2 id='register__title'>Login</h2>
-                    <div className='register__box'>
-                        <label htmlFor='user'>
-                            User
-                            <i className='fas fa-asterisk' />
-                        </label>
-                        <input
-                            id='user'
-                            className={'input'}
-                            type='text'
-                            maxLength={16}
-                            minLength={4}
-                            required
-                            placeholder='Username'
-                            onChange={handleUsernameChange}
-                            value={username}
-                        />
-                    </div>
-                    <div className='register__box'>
-                        <label htmlFor='password'>
-                            Password
-                            <i className='fas fa-asterisk' />
-                        </label>
-                        <input
-                            className={'input'}
-                            id='password'
-                            type='password'
-                            minLength={6}
-                            required
-                            placeholder='Password'
-                            onChange={handlePasswordChange}
-                            value={password}
-                        />
-                    </div>
-                    <br />
+                    <label htmlFor='user'>
+                        User
+                        <i className='fas fa-asterisk'/>
+                    </label>
+                    <input
+                        id='user'
+                        className={'input'}
+                        type='text'
+                        maxLength={16}
+                        minLength={4}
+                        required
+                        placeholder='Username'
+                        onChange={handleUsernameChange}
+                        value={username}
+                    />
+                    <br/>
+                    <label htmlFor='password'>
+                        Password
+                        <i className='fas fa-asterisk'/>
+                    </label>
+                    <input
+                        className={'input'}
+                        id='password'
+                        type='password'
+                        minLength={6}
+                        required
+                        placeholder='Password'
+                        onChange={handlePasswordChange}
+                        value={password}
+                    />
+                    <br/>
                     <input
                         type='submit'
                         className={'input'}

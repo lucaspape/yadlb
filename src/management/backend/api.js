@@ -31,6 +31,10 @@ module.exports = class Api {
         await this.database.insertHost(port, protocol, destination, dport)
     }
 
+    async deleteHost(port){
+        await this.database.deleteHost(port)
+    }
+
     async getHosts(){
         return await this.database.getHosts()
     }
