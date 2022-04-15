@@ -7,4 +7,5 @@ RUN npm install -g serve
 
 COPY ./ .
 
-CMD npm start
+RUN npm run build
+CMD serve -s build
