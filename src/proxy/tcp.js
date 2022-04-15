@@ -16,8 +16,15 @@ if(!srcPort){
     net.createServer((from) => {
         let to = net.createConnection({host: destAddr, port: destPort})
 
+        to.on('error', () => {
+            console.log(JSON.stringify({message: 'Connection failed ' + from.remoteAddress, status: 'failed'}))
+            from.emit('error')
+        })
+
         from.pipe(to)
         to.pipe(from)
+
+        console.log(JSON.stringify({message: 'New tcp connection from ' + from.remoteAddress, status: 'ok'}))
     }).listen(srcPort, () => {
         console.log(`TCP proxy listening on port ${srcPort}, forwarding to ${destAddr}:${destPort}`)
     })
